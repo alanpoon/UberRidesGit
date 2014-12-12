@@ -1,0 +1,854 @@
+<<<<<<<=view-json=
+{
+  "id":"uberRidesNB",
+  "name":"UberRidesNB",
+  "category":"Chart",
+  "default":{
+    "jsonClass":"View",
+    "elxType":"View",
+    "vtype":"bundle",
+    "state":"visible",
+    "isContainer":false,
+    "position":{
+      "jsonClass":"Position",
+      "elxType":"Position",
+      "height":"900",
+      "width":"900",
+      "zIndex":"auto"
+    },
+    "data":{
+      "jsonClass":"DataEmbedded",
+      "datasource":{
+        "jsonClass":"DataSource",
+        "name":"initData",
+        "stype":"Data",
+        "desc":"default data",
+        "schema":{
+          "jsonClass":"Schema",
+          "caseSensitive":false,
+          "columns":[{
+            "jsonClass":"SchemaColumn",
+            "name":"From",
+            "dtype":"String",
+            "attrs":[]
+          },{
+            "jsonClass":"SchemaColumn",
+            "name":"To",
+            "dtype":"String",
+            "attrs":[]
+          },{
+            "jsonClass":"SchemaColumn",
+            "name":"Frequency",
+            "dtype":"Double",
+            "attrs":[]
+          },{
+            "jsonClass":"SchemaColumn",
+            "name":"Datetime",
+            "dtype":"String",
+            "attrs":[]
+          }]
+        },
+        "data":{
+          "jsonClass":"DataRecords",
+          "records":[{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"ap"
+            },{
+              "jsonClass":"Field",
+              "value":"ba"
+            },{
+              "jsonClass":"Field",
+              "value":8916
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          },{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"ap"
+            },{
+              "jsonClass":"Field",
+              "value":"pe"
+            },{
+              "jsonClass":"Field",
+              "value":2060
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          },{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"ba"
+            },{
+              "jsonClass":"Field",
+              "value":"pe"
+            },{
+              "jsonClass":"Field",
+              "value":8090
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          },{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"pe"
+            },{
+              "jsonClass":"Field",
+              "value":"ba"
+            },{
+              "jsonClass":"Field",
+              "value":940
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          },{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"pe"
+            },{
+              "jsonClass":"Field",
+              "value":"ap"
+            },{
+              "jsonClass":"Field",
+              "value":940
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          },{
+            "jsonClass":"Record",
+            "fields":[{
+              "jsonClass":"Field",
+              "value":"ba"
+            },{
+              "jsonClass":"Field",
+              "value":"ap"
+            },{
+              "jsonClass":"Field",
+              "value":1304
+            },{
+              "jsonClass":"Field",
+              "value":"2012-04-18"
+            }]
+          }]
+        }
+      },
+      "directive":""
+    },
+    "typeinfo":{
+      "jsonClass":"Bundle",
+      "type":"uberRidesNB",
+      "data":{
+        "fromCol":"From",
+        "toCol":"To",
+        "frequencyCol":"Frequency",
+        "dateTimeCol":"Datetime"
+      },
+      "chartHeight":"900",
+      "chartWidth":"900",
+      "legend":{
+              "colorScale":"#E41A1C,#FFFF33,#CC6699,#577e14,#009688,#81d8d0",
+        "autoColor": "Yes",
+        "allowSmallVal":"Yes",
+        "smallVal":"1000",
+        "allowShortForm":"Yes",
+        "shortForm":"ap,ba,pe",
+        "name":"Apple,Banana,Pear"
+        
+        
+      }
+    }   
+  },
+  "includes":["/elx/lib/d3.v3.min.js"],
+  "edit-section":[{
+    "id":"view",
+    "name":"View"
+  },{
+    "id":"actionbar",
+    "name":"Actionbar"
+  },{
+    "id":"data",
+    "name":"Data"
+  },{
+    "id":"uberRidesNB",
+    "name":"UberRidesNB"
+  },{
+    "id":"filters",
+    "name":"Filters"
+  }]
+}
+========
+<<<<<<<=edit-json=
+{
+   "jsonClass":"ViewSection",
+   "id":"uberRidesNB",
+   "rows":[
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-chartHeight-label",
+               "type":"label",
+               "text":"Chart Height"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-chartHeight",
+               "type":"field",
+               "value":"${typeinfo.chartHeight}",
+               "readonly":false
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-chartWidth-label",
+               "type":"label",
+               "text":"Chart Width"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-chartWidth",
+               "type":"field",
+               "value":"${typeinfo.chartWidth}",
+               "readonly":false
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-fromCol-label",
+               "type":"label",
+               "text":"From Column"
+            },
+            {
+               "jsonClass":"SchemaColumnSelect",
+               "id":"typeinfo-fromCol",
+               "type":"select-schema-column",
+               "value":"${typeinfo.fromCol}"
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-toCol-label",
+               "type":"label",
+               "text":"To Column"
+            },
+            {
+               "jsonClass":"SchemaColumnSelect",
+               "id":"typeinfo-toCol",
+               "type":"select-schema-column",
+               "value":"${typeinfo.toCol}"
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-frequencyCol-label",
+               "type":"label",
+               "text":"Frequency Column"
+            },
+            {
+               "jsonClass":"SchemaColumnSelect",
+               "id":"typeinfo-frequencyCol",
+               "type":"select-schema-column",
+               "value":"${typeinfo.frequencyCol}"
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-dateTimeCol-label",
+               "type":"label",
+               "text":"Datetime Column"
+            },
+            {
+               "jsonClass":"SchemaColumnSelect",
+               "id":"typeinfo-dateTimeCol",
+               "type":"select-schema-column",
+               "value":"${typeinfo.dateTimeCol}"
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendcolorScale-label",
+               "type":"label",
+               "text":"Legend ColorScale"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-legendcolorScale",
+               "type":"field",
+               "value":"${typeinfo.legendcolorScale}",
+               "readonly":false
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendautoColor-label",
+               "type":"label",
+               "text":"Legend autoColor"
+            },
+            {
+               "jsonClass":"Select",
+               "id":"typeinfo-legendautoColor",
+               "type":"select",
+               "value":"${typeinfo.legendautoColor}",
+               "options":[
+                  {
+                     "jsonClass":"Option",
+                     "text":"Yes",
+                     "value":"Yes"
+                  },
+                  {
+                     "jsonClass":"Option",
+                     "text":"No",
+                     "value":"No"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendallowSmallVal-label",
+               "type":"label",
+               "text":"Legend allowSmallVal"
+            },
+            {
+               "jsonClass":"Select",
+               "id":"typeinfo-legendallowSmallVal",
+               "type":"select",
+               "value":"${typeinfo.legendallowSmallVal}",
+               "options":[
+                  {
+                     "jsonClass":"Option",
+                     "text":"Yes",
+                     "value":"Yes"
+                  },
+                  {
+                     "jsonClass":"Option",
+                     "text":"No",
+                     "value":"No"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendsmallVal-label",
+               "type":"label",
+               "text":"Legend smallValue"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-legendsmallVal",
+               "type":"field",
+               "value":"${typeinfo.legendsmallVal}",
+               "readonly":false
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendallowShortForm-label",
+               "type":"label",
+               "text":"Tooltip allowShortForm"
+            },
+            {
+               "jsonClass":"Select",
+               "id":"typeinfo-legendallowShortForm",
+               "type":"select",
+               "value":"${typeinfo.legendallowShortForm}",
+               "options":[
+                  {
+                     "jsonClass":"Option",
+                     "text":"Yes",
+                     "value":"Yes"
+                  },
+                  {
+                     "jsonClass":"Option",
+                     "text":"No",
+                     "value":"No"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendShortForm-label",
+               "type":"label",
+               "text":"Tooltip shortForm"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-legendShortForm",
+               "type":"field",
+               "value":"${typeinfo.legendShortForm}",
+               "readonly":false
+            }
+         ]
+      },
+      {
+         "jsonClass":"Row",
+         "cols":[
+            {
+               "jsonClass":"Label",
+               "id":"typeinfo-legendName-label",
+               "type":"label",
+               "text":"Tooltip Actual Name"
+            },
+            {
+               "jsonClass":"Field",
+               "id":"typeinfo-legendName",
+               "type":"field",
+               "value":"${typeinfo.legendName}",
+               "readonly":false
+            }
+         ]
+      }
+   ]
+}
+========
+<<<<<<<=edit-js=
+elx.bundle.type.uberRidesNB = {
+
+	init : function(view) {
+		$("#typeinfo-chartHeight").val(view.typeinfo.chartHeight);
+      	$("#typeinfo-chartWidth").val(view.typeinfo.chartWidth);
+      	$("#typeinfo-legendcolorScale").val(view.typeinfo.legend.colorScale);
+      $("#typeinfo-legendautoColor").val(view.typeinfo.legend.autoColor);
+       $("#typeinfo-legendallowSmallVal").val(view.typeinfo.legend.allowSmallVal);
+      $("#typeinfo-legendsmallVal").val(view.typeinfo.legend.smallVal);
+      $("#typeinfo-legendallowShortForm").val(view.typeinfo.legend.allowShortForm);
+       $("#typeinfo-legendShortForm").val(view.typeinfo.legend.shortForm);
+       $("#typeinfo-legendName").val(view.typeinfo.legend.name);
+	},
+
+	validate : function(view) {
+		return true;
+	},
+
+	save : function(view) {
+		var cHeight = $("#typeinfo-chartHeight").val();
+		view.typeinfo.chartHeight = cHeight;
+      	var cWidth = $("#typeinfo-chartWidth").val();
+		view.typeinfo.chartWidth = cWidth;
+       	var dTime = $("#typeinfo-dateTimeCol").val();
+		view.typeinfo.data.dateTimeCol = dTime;
+      var dFrom = $("#typeinfo-fromCol").val();
+		view.typeinfo.data.fromCol = dFrom;
+       var dTo = $("#typeinfo-toCol").val();
+		view.typeinfo.data.toCol = dTo;
+         var dFrequency = $("#typeinfo-frequencyCol").val();
+		view.typeinfo.data.frequencyCol = dFrequency;
+          var lColor = $("#typeinfo-legendcolorScale").val();
+		view.typeinfo.legend.colorScale = lColor;
+      var lAutoColor =  $("#typeinfo-legendautoColor").val();
+      	view.typeinfo.legend.autoColor = lAutoColor;
+      var lAllowSmallVal = $("#typeinfo-legendallowSmallVal").val();
+      view.typeinfo.legend.allowSmallVal = lAllowSmallVal;
+      var lSmallVal = $("#typeinfo-legendsmallVal").val();
+      view.typeinfo.legend.smallVal = lSmallVal;
+      
+        var tAllowShortForm = $("#typeinfo-legendallowShortForm").val();
+     
+      view.typeinfo.legend.allowShortForm = tAllowShortForm;
+        var tShortForm = $("#typeinfo-legendShortForm").val();
+      view.typeinfo.legend.shortForm = tShortForm;
+         var tName = $("#typeinfo-legendName").val();
+      view.typeinfo.legend.name = tName;
+     
+	}
+};
+========
+<<<<<<<=view-html=
+<style>
+ 
+#circle circle {
+  fill: none;
+  pointer-events: all;
+}
+
+.group path {
+  fill-opacity: .5;
+}
+
+path.chord {
+  stroke: #000;
+  stroke-width: .25px;
+}
+
+#circle:hover path.fade {
+  display: none;
+}
+
+}
+</style>
+<div id='${id}'></div>	
+<div class='elx-script'>
+ console.log("asdsad");
+  	var div = $("#${id}");
+  var view = elx.host.getViewById("${id}");
+  	//div.text("Property Value: " + view.typeinfo.chartHeight);
+  	//elx.host.setupAutoResizeView(div, "view");
+  /*
+  var rawdata2=[{"Datetime":"2014-01-20","From":"Toa Payoh","To":"Yishun","Frequency":10},{"Datetime":"2014-01-20","From":"Yishun","To":"SengKang","Frequency":6},{"Datetime":"2014-01-20","From":"Bishan","To":"Toa Payoh","Frequency":3},{"Datetime":"2014-01-20","From":"Orchard","To":"Yishun","Frequency":8},
+  {"Datetime":"2014-01-20","From":"Orchard","To":"Marina","Frequency":15}];
+ */
+  var rawdata2=${data};
+   var processedData=[];
+  rawdata2.forEach(function(d) {
+  processedData.push({ "From" :d[view.typeinfo.data.fromCol], 
+  "To": d[view.typeinfo.data.toCol],"Datetime": d[view.typeinfo.data.dateTimeCol],
+  "Frequency":d[view.typeinfo.data.frequencyCol]  })
+  })
+  rawdata2=processedData;
+  console.log("rawdata2:",JSON.stringify(rawdata2));
+  //Create appending To_key to From_key
+ 
+  if(view.typeinfo.legend.allowSmallVal=="Yes") {
+ 
+  var smallValue= parseInt(view.typeinfo.legend.smallVal);
+  console.log("smallValue:",smallValue);
+  }
+  else  smallValue =0;
+  var Diff_Fromkey=_.difference(_.pluck(rawdata2,'To'),_.pluck(rawdata2,'From'));
+  var Diff_Tokey=_.difference(_.pluck(rawdata2,'From'),_.pluck(rawdata2,'To'));
+  var Diff_key=_.union(Diff_Fromkey,Diff_Tokey);
+  console.log("Diff_key",JSON.stringify(Diff_key));
+  
+  Diff_key.forEach(function(d,i) {
+  rawdata2.push({Datetime:"2014-01-20", From:d, To:d, Frequency:smallValue});
+  })
+   rawdata2.sort(function (a, b) { 
+  var nameA=a.From.toLowerCase(), nameB=b.From.toLowerCase();
+   
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0; 
+       });
+  console.log("rawdata2:",JSON.stringify(rawdata2));
+  
+  //-end
+  //aggregate by 'FROM'
+  
+   var tmp = _.groupBy(rawdata2, function(d){ 
+
+   return d['From']; 
+   });
+  console.log("tmp:",JSON.stringify(tmp));
+  var tmp2 = {};
+  _.each(tmp, function(t, unit){
+  tmp2[unit] = _.groupBy(t, function(d){
+    return d['To'];
+  });
+});
+  // console.log("tmp2",tmp2);
+  var aggregated = [];
+_.each(tmp2, function(t, unit){
+  _.each(t, function(items, currency){
+    var frequency = 0;
+  	
+    _.each(items, function(item){
+  
+	daterange=item['Datetime'];
+      frequency += item['Frequency']; 
+       
+  });
+    aggregated.push({
+  		"To":  currency
+  ,		"From": unit
+  
+  		,"DateRange" : daterange
+     	, "Frequency" : frequency
+      });
+  });
+});
+ 
+//-end by month
+  //colorScale
+  var colorScaleDefault = [];
+   
+  console.log("tmpisArray",Array.isArray(tmp));
+  var citiesShortForm=_.keys(tmp);
+  console.log("autoColor:",view.typeinfo.legend.autoColor);
+  if (view.typeinfo.legend.autoColor=="Yes") {
+  makeColorGradient(.3,.3,.3,0,2,60);
+  var colorScaleArr=colorScaleDefault;
+  console.log("colorScaleArr",JSON.stringify(colorScaleArr));
+  } else {
+    var colorScale=view.typeinfo.legend.colorScale;
+  colorScaleArr=colorScale.split(",");}
+  var cities=[];
+
+  citiesShortForm.forEach(function(d,i) {
+  cities.push({name:d, color:colorScaleArr[i],shortForm:d});
+  })
+ 
+  //Short From mapping
+  var AllowSF=view.typeinfo.legend.allowShortForm;
+  console.log("allowShortForm:",AllowSF);
+console.log("ShortForm:",view.typeinfo.legend.shortForm);
+  
+  if (view.typeinfo.legend.allowShortForm =="Yes") {
+    var map_shortForm= (view.typeinfo.legend.shortForm).split(",");
+    var map_name=(view.typeinfo.legend.name).split(",");
+  console.log("map_name",JSON.stringify(map_name));
+    var map=[];
+    map_shortForm.forEach(function(d,i) {
+    map.push({shortForm:d, name:map_name[i]}); 
+    })
+    var cities2=[];
+    cities.forEach(function(c,i) {
+    var cities_shortF=c.name;
+    var obj={};
+    map.forEach(function(m,n) {
+    var map_shortF=m.shortForm;
+    if (cities_shortF==map_shortF) { 
+    var obj={name:m.name,shortForm:m.shortForm, color: c.color};
+     cities2.push(obj);} 
+    })
+    
+    }) 
+    console.log("cities2:", JSON.stringify(cities2));
+    cities=cities2;
+ 		 } 
+  console.log("cities",JSON.stringify(cities));
+
+  
+    var nester = d3.nest().key(function(d) { return d.From;})
+  .rollup(function(values) {
+  	  var sortedValues = values.sort(function (a, b) { 
+  var nameA=a.From.toLowerCase(), nameB=b.From.toLowerCase();
+  
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0; 
+       });
+    var mkKey = function (c, name, v) {
+         return {
+           name: 'C' + name+c,
+           value: v
+  		};
+  }
+  var pivotedX = sortedValues.map(function (d) { return mkKey(d.To, '_To_', d.Frequency);});
+  
+  return Array.prototype.concat.apply([], [pivotedX]);
+  });
+  var nestedData = nester.entries(aggregated);
+  
+  var pivotedData= [];
+    nestedData.forEach(function (kv1) {
+    var a = kv1.key;
+  
+  var obj = { From:a};
+  kv1.values.forEach(function (d){
+          obj[d.name] = d.value;
+        })
+        pivotedData.push(obj);
+      })
+  //  console.log("pivotedData:",JSON.stringify(pivotedData));
+
+
+  var to_key=_.uniq(pluck(rawdata2,view.typeinfo.data.toCol));
+  var pivotedData_key=_.uniq(_.flatten(_.map(pivotedData, _.keys)));
+  var sortedPivotedData_key=(_.without(pivotedData_key,'From')).sort(function(a,b) {
+   var nameA=a.toLowerCase(), nameB=b.toLowerCase();
+ 
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0; 
+  });
+  // console.log("sortedpivotedData_key",JSON.stringify(sortedPivotedData_key));
+  
+  var tv1Array=[];
+   pivotedData.forEach(function(d) {
+   var tv2Array=[];
+  
+  sortedPivotedData_key.forEach(function(key)
+  	{
+  if (_.isUndefined(d[key])) {d[key]=0;}
+  if (key.substr(0,2) =="C_") 
+  	{tv2Array.push(d[key]);}
+ 	 })
+  tv1Array.push(tv2Array);
+  })
+  // console.log("newpivotedData",JSON.stringify(pivotedData));
+  
+  /*var matrix = [
+  [11975,  5871, 8916, 2868],
+  [ 1951, 10048, 2060, 6171],
+  [ 8010, 16145, 8090, 8045],
+  [ 1013,   990,  940, 6907]
+  ];*/
+  
+
+  var width = view.typeinfo.chartWidth,
+    height = view.typeinfo.chartHeight,
+    outerRadius = Math.min(width, height) / 2 - 10,
+    innerRadius = outerRadius - 24;
+
+var formatPercent = d3.format(".1f");
+
+var arc = d3.svg.arc()
+    .innerRadius(innerRadius)
+    .outerRadius(outerRadius);
+
+var layout = d3.layout.chord()
+    .padding(.04)
+    .sortSubgroups(d3.descending)
+    .sortChords(d3.ascending);
+
+var path = d3.svg.chord()
+    .radius(innerRadius);
+
+var svg = d3.select("#${id}").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("id", "circle")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+svg.append("circle")
+    .attr("r", outerRadius);
+
+   // Compute the chord layout.
+    layout.matrix(tv1Array);
+
+    // Add a group per neighborhood.
+    var group = svg.selectAll(".group")
+        .data(layout.groups)
+      .enter().append("g")
+        .attr("class", "group")
+        .on("mouseover", mouseover);
+
+    // Add a mouseover title.
+    group.append("title").text(function(d, i) {
+      return cities[i].name + ": " + formatPercent(d.value) + " of origins";
+    });
+
+    // Add the group arc.
+    var groupPath = group.append("path")
+        .attr("id", function(d, i) { return "group" + i; })
+        .attr("d", arc)
+        .style("fill", function(d,i) { return cities[i].color; });
+
+    // Add a text label.
+    var groupText = group.append("text")
+        .attr("x", 3)
+        .attr("dy", 15);
+
+    groupText.append("textPath")
+        .attr("xlink:href", function(d, i) { return "#group" + i; })
+        .text(function(d, i) { return cities[i].shortForm; });
+
+    // Remove the labels that don't fit. :(
+    groupText.filter(function(d, i) { return groupPath[0][i].getTotalLength() / 2 - 20 < this.getComputedTextLength(); })
+        .remove();
+
+    // Add the chords.
+    var chord = svg.selectAll(".chord")
+        .data(layout.chords)
+      .enter().append("path")
+        .attr("class", "chord")
+        .style("fill", function(d) { return cities[d.source.index].color; })
+        .attr("d", path);
+
+    // Add an elaborate mouseover title for each chord.
+    chord.append("title").text(function(d) {
+      return cities[d.source.index].name
+          + " -> " + cities[d.target.index].name
+          + ": " + formatPercent(d.source.value)
+          + "\n" + cities[d.target.index].name
+          + " -> " + cities[d.source.index].name
+          + ": " + formatPercent(d.target.value);
+    });
+
+    function mouseover(d, i) {
+      chord.classed("fade", function(p) {
+        return p.source.index != i
+            && p.target.index != i;
+      });
+    }
+     //new pluck function
+function pluck(originalArr, prop) {
+    var newArr = [];
+    for(var i = 0; i < originalArr.length; i++) {
+        newArr[i] = originalArr[i][prop];
+    }
+    return newArr;
+}
+  // Color functions
+   function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+  }
+  function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+		}
+   function makeColorGradient(frequency1, frequency2, frequency3,
+                             phase1, phase2, phase3,
+                             center, width, len)
+  {
+  
+ 	   if (center == undefined)   center = 128;
+    if (width == undefined)    width = 127;
+    if (len == undefined)      len = 50;
+  for (var u=0; u < 2;++u) {
+    for (var i = 0; i < len; ++i)
+    {
+       var red = Math.sin(frequency1*i + phase1) * width + center;
+       var grn = Math.sin(frequency2*i + phase2) * width + center;
+       var blu = Math.sin(frequency3*i + phase3) * width + center;
+
+  		colorScaleDefault.push(rgbToHex(d3.round(red),d3.round(grn),d3.round(blu)));
+  }
+  }
+  }
+
+</div>
+========
