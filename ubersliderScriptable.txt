@@ -20,7 +20,7 @@ var height = 400;
     	var sliderWidth=300;
 	var legendScaleLength=2;
 	var indexArr=_.range(legendScaleLength);
-	var minMaxArr=[0,1000];
+	var minMaxArr=[0,100];
 	var prefix='$';
 	var suffix='money';
   
@@ -74,7 +74,7 @@ console.log("scaleArrInit",scaleArrInit);
   	   
 //Initialize Slider
 $("#slider"+viewId).slider({
-	range:true,
+range:true,
 	max:minMaxArr[1],
 	min:minMaxArr[0],
     values: scaleArr,
@@ -110,11 +110,11 @@ $('#slider'+viewId).find('a:nth-child('+(i+1)+')').addClass('ui-slider-handle'+(
 $('#slider'+viewId+'.ui-slider .ui-slider-handle.ui-slider-handle'+(i+1)).removeClass('ui-corner-all');
 });
 console.log("before d3 select");
-/*	var parent = $("#"+viewId).css("overflow","auto");
+	var parent = $("#"+viewId).css("overflow","auto");
     var data = parent.data("data");
-	*/
-	var data = [[1,"tampines","Serangoon",5],[2,"tampines","Serangoon",15]];
-	var typeInfoPath={"pkCol":"PrimaryKey","fromCol":"From","toCol":"To","freqCol":"Frequency"};
+	
+//	var data = [[1,"tampines","Serangoon",5],[2,"tampines","Serangoon",15]];
+	var typeInfoPath={"pkCol":"ds_2c_fleet_chord.PerRecord","fromCol":"From","toCol":"To","freqCol":"Frequency"};
 	var dataJSON = arrToJSON(data, typeInfoPath);
 updateAggrKey(dataJSON,scaleArr[0],scaleArr[1]);
 	
