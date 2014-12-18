@@ -156,18 +156,14 @@
       },
       "chartHeight":"900",
       "chartWidth":"900",
-      "legend":{
-              "colorScale":"#E41A1C,#FFFF33,#CC6699,#577e14,#009688,#81d8d0",
+        "colorScale":"#E41A1C,#FFFF33,#CC6699,#577e14,#009688,#81d8d0",
         "autoColor": "Yes",
-        "allowSmallVal":"Yes",
+        "allowSmallVal":"No",
         "smallVal":"1000",
-        "allowShortForm":"Yes",
+        "allowShortForm":"No",
         "shortForm":"ap,ba,pe",
         "name":"Apple,Banana,Pear"
-        
-        
-      }
-    }   
+         }   
   },
   "includes":["/elx/lib/d3.v3.min.js"],
   "edit-section":[{
@@ -302,15 +298,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendcolorScale-label",
+               "id":"typeinfo-colorScale-label",
                "type":"label",
                "text":"Legend ColorScale"
             },
             {
                "jsonClass":"Field",
-               "id":"typeinfo-legendcolorScale",
+               "id":"typeinfo-colorScale",
                "type":"field",
-               "value":"${typeinfo.legendcolorScale}",
+               "value":"${typeinfo.colorScale}",
                "readonly":false
             }
          ]
@@ -320,15 +316,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendautoColor-label",
+               "id":"typeinfo-autoColor-label",
                "type":"label",
                "text":"Legend autoColor"
             },
             {
                "jsonClass":"Select",
-               "id":"typeinfo-legendautoColor",
+               "id":"typeinfo-autoColor",
                "type":"select",
-               "value":"${typeinfo.legendautoColor}",
+               "value":"${typeinfo.autoColor}",
                "options":[
                   {
                      "jsonClass":"Option",
@@ -349,15 +345,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendallowSmallVal-label",
+               "id":"typeinfo-allowSmallVal-label",
                "type":"label",
                "text":"Legend allowSmallVal"
             },
             {
                "jsonClass":"Select",
-               "id":"typeinfo-legendallowSmallVal",
+               "id":"typeinfo-allowSmallVal",
                "type":"select",
-               "value":"${typeinfo.legendallowSmallVal}",
+               "value":"${typeinfo.allowSmallVal}",
                "options":[
                   {
                      "jsonClass":"Option",
@@ -378,15 +374,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendsmallVal-label",
+               "id":"typeinfo-smallVal-label",
                "type":"label",
                "text":"Legend smallValue"
             },
             {
                "jsonClass":"Field",
-               "id":"typeinfo-legendsmallVal",
+               "id":"typeinfo-smallVal",
                "type":"field",
-               "value":"${typeinfo.legendsmallVal}",
+               "value":"${typeinfo.smallVal}",
                "readonly":false
             }
          ]
@@ -396,15 +392,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendallowShortForm-label",
+               "id":"typeinfo-allowShortForm-label",
                "type":"label",
                "text":"Tooltip allowShortForm"
             },
             {
                "jsonClass":"Select",
-               "id":"typeinfo-legendallowShortForm",
+               "id":"typeinfo-allowShortForm",
                "type":"select",
-               "value":"${typeinfo.legendallowShortForm}",
+               "value":"${typeinfo.allowShortForm}",
                "options":[
                   {
                      "jsonClass":"Option",
@@ -425,15 +421,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendShortForm-label",
+               "id":"typeinfo-shortForm-label",
                "type":"label",
                "text":"Tooltip shortForm"
             },
             {
                "jsonClass":"Field",
-               "id":"typeinfo-legendShortForm",
+               "id":"typeinfo-shortForm",
                "type":"field",
-               "value":"${typeinfo.legendShortForm}",
+               "value":"${typeinfo.shortForm}",
                "readonly":false
             }
          ]
@@ -443,15 +439,15 @@
          "cols":[
             {
                "jsonClass":"Label",
-               "id":"typeinfo-legendName-label",
+               "id":"typeinfo-name-label",
                "type":"label",
                "text":"Tooltip Actual Name"
             },
             {
                "jsonClass":"Field",
-               "id":"typeinfo-legendName",
+               "id":"typeinfo-name",
                "type":"field",
-               "value":"${typeinfo.legendName}",
+               "value":"${typeinfo.name}",
                "readonly":false
             }
          ]
@@ -463,15 +459,12 @@
 elx.bundle.type.uberRidesNB = {
 
 	init : function(view) {
-		$("#typeinfo-chartHeight").val(view.typeinfo.chartHeight);
-      	$("#typeinfo-chartWidth").val(view.typeinfo.chartWidth);
-      	$("#typeinfo-legendcolorScale").val(view.typeinfo.legend.colorScale);
-      $("#typeinfo-legendautoColor").val(view.typeinfo.legend.autoColor);
-       $("#typeinfo-legendallowSmallVal").val(view.typeinfo.legend.allowSmallVal);
-      $("#typeinfo-legendsmallVal").val(view.typeinfo.legend.smallVal);
-      $("#typeinfo-legendallowShortForm").val(view.typeinfo.legend.allowShortForm);
-       $("#typeinfo-legendShortForm").val(view.typeinfo.legend.shortForm);
-       $("#typeinfo-legendName").val(view.typeinfo.legend.name);
+	
+       $("#typeinfo-dateTimeCol").val(view.typeinfo.data.dateTimeCol);
+      $("#typeinfo-fromCol").val(view.typeinfo.data.fromCol);
+       $("#typeinfo-toCol").val(view.typeinfo.data.toCol);
+       $("#typeinfo-frequencyCol").val(view.typeinfo.data.frequencyCol);
+      elx.host.utils.initSectionGroups(view,$("#uberRidesNB-div"));
 	},
 
 	validate : function(view) {
@@ -479,10 +472,7 @@ elx.bundle.type.uberRidesNB = {
 	},
 
 	save : function(view) {
-		var cHeight = $("#typeinfo-chartHeight").val();
-		view.typeinfo.chartHeight = cHeight;
-      	var cWidth = $("#typeinfo-chartWidth").val();
-		view.typeinfo.chartWidth = cWidth;
+	
        	var dTime = $("#typeinfo-dateTimeCol").val();
 		view.typeinfo.data.dateTimeCol = dTime;
       var dFrom = $("#typeinfo-fromCol").val();
@@ -491,22 +481,7 @@ elx.bundle.type.uberRidesNB = {
 		view.typeinfo.data.toCol = dTo;
          var dFrequency = $("#typeinfo-frequencyCol").val();
 		view.typeinfo.data.frequencyCol = dFrequency;
-          var lColor = $("#typeinfo-legendcolorScale").val();
-		view.typeinfo.legend.colorScale = lColor;
-      var lAutoColor =  $("#typeinfo-legendautoColor").val();
-      	view.typeinfo.legend.autoColor = lAutoColor;
-      var lAllowSmallVal = $("#typeinfo-legendallowSmallVal").val();
-      view.typeinfo.legend.allowSmallVal = lAllowSmallVal;
-      var lSmallVal = $("#typeinfo-legendsmallVal").val();
-      view.typeinfo.legend.smallVal = lSmallVal;
-      
-        var tAllowShortForm = $("#typeinfo-legendallowShortForm").val();
-     
-      view.typeinfo.legend.allowShortForm = tAllowShortForm;
-        var tShortForm = $("#typeinfo-legendShortForm").val();
-      view.typeinfo.legend.shortForm = tShortForm;
-         var tName = $("#typeinfo-legendName").val();
-      view.typeinfo.legend.name = tName;
+       elx.host.utils.saveProperties(view.typeinfo);
      
 	}
 };
@@ -556,9 +531,9 @@ path.chord {
   console.log("rawdata2:",JSON.stringify(rawdata2));
   //Create appending To_key to From_key
  
-  if(view.typeinfo.legend.allowSmallVal=="Yes") {
+  if(view.typeinfo.allowSmallVal=="Yes") {
  
-  var smallValue= parseInt(view.typeinfo.legend.smallVal);
+  var smallValue= parseInt(view.typeinfo.smallVal);
   console.log("smallValue:",smallValue);
   }
   else  smallValue =0;
@@ -619,13 +594,13 @@ _.each(tmp2, function(t, unit){
    
   console.log("tmpisArray",Array.isArray(tmp));
   var citiesShortForm=_.keys(tmp);
-  console.log("autoColor:",view.typeinfo.legend.autoColor);
-  if (view.typeinfo.legend.autoColor=="Yes") {
+  console.log("autoColor:",view.typeinfo.autoColor);
+  if (view.typeinfo.autoColor=="Yes") {
   makeColorGradient(.3,.3,.3,0,2,60);
   var colorScaleArr=colorScaleDefault;
   console.log("colorScaleArr",JSON.stringify(colorScaleArr));
   } else {
-    var colorScale=view.typeinfo.legend.colorScale;
+    var colorScale=view.typeinfo.colorScale;
   colorScaleArr=colorScale.split(",");}
   var cities=[];
 
@@ -634,13 +609,12 @@ _.each(tmp2, function(t, unit){
   })
  
   //Short From mapping
-  var AllowSF=view.typeinfo.legend.allowShortForm;
+  var AllowSF=view.typeinfo.allowShortForm;
   console.log("allowShortForm:",AllowSF);
-console.log("ShortForm:",view.typeinfo.legend.shortForm);
   
-  if (view.typeinfo.legend.allowShortForm =="Yes") {
-    var map_shortForm= (view.typeinfo.legend.shortForm).split(",");
-    var map_name=(view.typeinfo.legend.name).split(",");
+  if (view.typeinfo.allowShortForm =="Yes") {
+    var map_shortForm= (view.typeinfo.shortForm).split(",");
+    var map_name=(view.typeinfo.name).split(",");
   console.log("map_name",JSON.stringify(map_name));
     var map=[];
     map_shortForm.forEach(function(d,i) {

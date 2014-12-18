@@ -1,0 +1,167 @@
+<table class='ui-widget ui-widget-content' style='width:100%'></table>
+<div class='elx-datahtml-script'>
+var width = 400;
+var height = 400;
+    var holder = d3.select("#"+viewId)
+      .append("div")
+      .attr("width", width)    
+      .attr("height", height); 
+	  
+	var slider=holder.append("div").attr("id","slider"+viewId)
+					.style({top:'10px',left:'30px',width:"300px"});
+						
+	var sliderTicks=holder.append("div").attr("id","sliderTicks"+viewId).style({top:'50px',left:'30px'});
+	d3.select("#sliderTicks"+viewId +' .prefix').style({'left':'30px'});
+	d3.select("#sliderTicks"+viewId+ ' svg').style({'top':'20px','height':'30px','width':'1000px'});
+	
+	var button=holder.append("button").attr("id","update"+viewId).text("update").style({height:'30px',width:'50px'});
+	
+   //Initalize variables
+    	var sliderWidth=300;
+	var legendScaleLength=2;
+	var indexArr=_.range(legendScaleLength);
+	var minMaxArr=[0,1000];
+	var prefix='$';
+	var suffix='money';
+  
+	 //Add slider tick
+	var tickGroup=d3.select("#sliderTicks"+viewId).append("svg").style({"height":'50px',"width":'1000px'});
+	var tickScale=d3.scale.linear().domain(minMaxArr).range([30, sliderWidth+30]);  //tick Scale
+				
+	  var tickFormat = tickScale.ticks(8); // Compute the tick format.
+	  
+     // Initialize the ticks with the old scale, x0.
+	
+     tickGroup.selectAll(".sliderTick").data(tickFormat).enter()
+		.append("svg:line")
+		.attr("x1",tickScale)
+		.attr("x2",tickScale)
+           .attr("y1", 0)
+          .attr("y2", 18)
+		  .attr("stroke","black")
+		  .attr("class","sliderTick");
+
+      tickGroup.selectAll("text.xAxisBottom").data(tickFormat).enter().append("svg:text")
+	  .attr("x",tickScale).attr("y",18)
+	  .attr("text-anchor", "middle")
+          .attr("dy", "1em")
+          .text(function(d,i) { return tickFormat[i]; }).attr("class", "xAxisBottom");
+//Add prefix
+tickGroup.append("svg:text").attr("x",4).attr("y",18).attr("text-anchor", "left")
+          .attr("dy", "1em").text(prefix);
+		  
+//Add suffix
+tickGroup.append("svg:text").attr("x",350).attr("y",18).attr("text-anchor", "left")
+          .attr("dy", "1em").text(suffix);
+		  
+		//Initialize ScaleArr
+
+var scaleArrInit=_.map(indexArr,function(num) {return parseInt(((minMaxArr[1]-minMaxArr[0])/(legendScaleLength))*num +minMaxArr[0]);}); //inital scale
+var scaleArr=scaleArrInit;
+console.log("scaleArrInit",scaleArrInit);
+ var legendColors={
+    min:"#e8ffd1",
+		max:"#ff8000",
+		//empty:'#efefef'
+		empty:'white'
+    ,  base: "black"
+  };
+	
+// add FormatScale
+  var formatScale=function(d){return d;};
+   var formatedMinMaxArr=[formatScale(minMaxArr[0]),formatScale(minMaxArr[1])];
+
+  	   
+//Initialize Slider
+$("#slider"+viewId).slider({
+	max:minMaxArr[1],
+	min:minMaxArr[0],
+    values: scaleArr,
+    slide: function(event, ui){
+         var handleElem = $(ui.handle).get(0);
+         if( handleElem == firstHandle.get(0)) {
+             return true;//false cancel slide
+         }
+		  //Actual Handle Selected
+        var handleIndex = $(ui.handle).index();
+        var diffA, diffB;
+
+        //Check with right handles
+        if(handleIndex > 0)
+            diffA = ui.values[handleIndex] - ui.values[handleIndex-1];
+	        //Check with left handles
+        if(handleIndex < ui.values.length-1)
+            diffB = ui.values[handleIndex+1] - ui.values[handleIndex];
+
+        if (diffA <= 0 || diffB <= 0) {//checks for the values and compares
+            return false;}
+		}
+});
+
+d3.select("#slider"+viewId+" .ui-slider-horizontal").style("width",sliderWidth+'px');
+
+firstHandle = $("#slider"+viewId).find(".ui-slider-handle:first");
+
+secondHandle = firstHandle.next();
+
+_.each(scaleArr,function(d,i) {
+$('#slider'+viewId).find('a:nth-child('+(i+1)+')').addClass('ui-slider-handle'+(i+1));
+$('#slider'+viewId+'.ui-slider .ui-slider-handle.ui-slider-handle'+(i+1)).removeClass('ui-corner-all');
+});
+console.log("before d3 select");
+/*	var parent = $("#"+viewId).css("overflow","auto");
+    var data = parent.data("data");
+	*/
+	var data = [[1,"tampines","Serangoon",5],[2,"tampines","Serangoon",15]];
+	var typeInfoPath={"pkCol":"PrimaryKey","fromCol":"From","toCol":"To","freqCol":"Frequency"};
+	var dataJSON = arrToJSON(data, typeInfoPath);
+updateAggrKey(dataJSON,scaleArr[0],scaleArr[1]);
+	
+
+d3.select("#update"+viewId).on("click",function(){
+// read a change in the slider input
+var scaleArr = $("#slider"+viewId).slider( "option", "values" );
+console.log("scaleArr : ",scaleArr);
+//update the chart with the new slider Values
+updateAggrKey(dataJSON,scaleArr[0],scaleArr[1]);
+	});	
+    function arrToJSON(data, typeInfoPath) {
+      var typeInfoArr = [];
+      var dataArr = [];
+      for (var propertyName in typeInfoPath) {
+          typeInfoArr.push(propertyName);
+      }
+      console.log("typeinfoArr", JSON.stringify(typeInfoArr));
+      _.each(data, function(d, i) {
+
+          var dataObject = _.object(typeInfoArr, d);
+          dataArr.push(dataObject);
+      })
+      return dataArr;
+  }		
+function updateAggrKey(dataJSON,min,max){
+	var pkFulfill=[];
+	var nestAggr= d3.nest().key(function(d) {return d.fromCol;}).key(function(d) {return d.toCol;})
+						.rollup(function(d) {
+						var totalFreq=d3.sum(d,function(g) {return g.freqCol;}); 
+						if (totalFreq > min && totalFreq < max) 
+						{
+						console.log("condition true");
+						var fulfilledArr=_.pluck(d,'pkCol');
+						pkFulfill.push(fulfilledArr);}
+						})
+						.entries(dataJSON);
+	 var selCol=typeInfoPath.pkCol;
+		 pkFulfill=_.flatten(pkFulfill);
+	 if (typeof view !=="undefined") {
+	    	    if (!view.id.contains('preview')) {
+         		window.elx.dashboard.view.notifySelect(view.id,{
+	            type: "value",
+	            col: selCol,
+	            sels: pkFulfill
+	        });
+	    }
+		}
+		console.log("col:",selCol,"sels:",pkFulfill);
+}  
+</div>
