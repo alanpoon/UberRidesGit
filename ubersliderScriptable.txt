@@ -74,6 +74,7 @@ console.log("scaleArrInit",scaleArrInit);
   	   
 //Initialize Slider
 $("#slider"+viewId).slider({
+	range:true,
 	max:minMaxArr[1],
 	min:minMaxArr[0],
     values: scaleArr,
