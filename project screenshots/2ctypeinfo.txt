@@ -1,0 +1,19 @@
+{
+   "jsonClass":"Bundle",
+   "type":"uberRidesNB",
+   "data":{
+      "fromCol":"ds_2c_fleet_chord.StartDistrict",
+      "toCol":"ds_2c_fleet_chord.StopDistrict",
+      "frequencyCol":"ds_2c_fleet_chord.countrows",
+      "dateTimeCol":"ds_2c_fleet_chord.StartDate"
+   },
+   "chartHeight":"600",
+   "chartWidth":"600",
+   "colorScale":"#E41A1C,#FFFF33,#CC6699,#577e14,#009688,#81d8d0",
+   "autoColor":"Yes",
+   "allowSmallVal":"No",
+   "smallVal":"1000",
+   "allowShortForm":"No",
+   "shortForm":"ap,ba,pe",
+   "name":"Apple,Banana,Pear"
+}
